@@ -1,0 +1,13 @@
+This project aims to answer the question “How long should an NBA season be?”.
+
+Many NBA fans commonly lament that the NBA season, which currently consists of 82 games, is “too long”. This results in games in the middle of the season that are largely considered “unwatchable” due to a lack of effort from the players because of a perceived lack of importance for the game. It is commonly believed that by shrinking the NBA season, each game will carry more importance for playoff seeding (ultimately what teams are interested in), and decrease the probability of injury due to fatigue.
+
+The original question can be reformulated to state, “How many NBA games are required to gain enough information to accurately predict, within a certain precision, the same results that would be obtained from a full length season?”.
+
+Originally adapted for use in basketball by Daryl Morey (the current GM of the highly successful Houston Rockets), the pythagorean expectation (PYE) is a formula used to predict the probability a team will win a game from the average points scored (PTS), and average points scored against (PTS_A). The formula can be represented as PYE = (PTS)^13.91 / [(PTS)^13.91+(PTS_A)^13.91].
+
+The game logs for all NBA games from 1983-2017 is available through the NBA’s publicly accessible stats API (https://stats.nba.com/stats/leaguegamefinder). These logs were aggregated and used to determine the viability of pythagorean expectation to accurately predict games won in Plot #1. This shows the error in the pythagorean expectation for an entire season, or in other words the absolute value of 82*PYE for each team minus the actual number of games the team won that year. On average, this plot shows the pythagorean expectation is accurate to within 2.5 +- 1.8 games after 82 games.
+
+Plot #2 then looks at after N games how well does pythagorean expectation predict what would happen if the remainder of the season was played. This analysis takes into account the number of games a team has already won after N games, and then predicts the number of games the team would win out of their remaining games based on pythagorean expectation using PTS and PTS_A averages up to that point in the season. The value shown on the y-axis of plot #2 is the absolute value of the difference between the actual number of games won after 82 games and the pythagorean expectation prediction after N games.
+
+Informed by these statistics, one answer to “How long should an NBA season be?”, can be found by identifying the number of games N after which the projected error in PYE is less than 2.5. Using results from 35 NBA seasons, this analysis using pythagorean expectation concludes the minimum appropriate length of an NBA season is 54 games.
